@@ -8,14 +8,12 @@ import Body from "./Body/Body"
 let cat_list = ["All", "Action", "Anthologies", "Dark Fantasy", "Fantasy Epics", "Horror", "Role Playing"];
 
 async function check_data(data){
-    let isValid = true;
-    Object.keys(data).map(
+     let isValid = !Object.keys(data).some(
         (item) => {
             if(data[item] === ""){
                 alert(`${item} should not be empty`);
-                isValid = false;
+                return true;
             }
-            return item;
         }
     )
     return {"data": data, "isValid": isValid};
@@ -58,18 +56,19 @@ class Shop extends Component {
     };
 
     sendOrderToDb = (order) => {
-        axios.post("http://localhost:3001/api/sendOrder", {
-                order
-            }
-        )
+        axios.post("http://localhost:3001/api/sendOrder", order)
         .then(alert("order sent"))
-        .catch(err => { console .log(err) })
+        .catch(err => {console.log(err)})
     }
 
     deleteProductToDb = (name2delete) => {
-        axios.delete("http://localhost:3001/api/deleteProduct", name2delete)
+        axios.delete("http://localhost:3001/api/deleteProduct", {
+            data: {
+                "name": name2delete
+            }
+        })
         .then(res => {this.getProductFromDb();})
-        .catch(err => { console .log(err) })
+        .catch(err => {console.log(err)})
         .then(alert(`successfully delete ${name2delete}`))
     }
 

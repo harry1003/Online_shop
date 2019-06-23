@@ -13,7 +13,6 @@ db.once("open", () => console.log("connected to MongoDB"));
 
 const mongo = {
     addProduct: async(req, res) => {
-        console.log(req.body)
         const data = await new Product(req.body);
         data.save(
             err => {
@@ -41,6 +40,7 @@ const mongo = {
         Product.findOneAndDelete(
             name, err => {
                 if (err) return res.send(err);
+                console.log(`delete product: ${name.name}`)
                 return res.json({ success: true });
             }
         );

@@ -2,12 +2,12 @@ const express = require("express");
 const router = express.Router();
 const db = require("./database/mongodb");
 
-router.post("/addProduct", (req, res) => {
-    db.addProduct(req, res);
-});
-
 router.get("/getAllProduct", (req, res) => {
     db.getAllProduct(res)
+});
+
+router.post("/addProduct", (req, res) => {
+    db.addProduct(req, res);
 });
 
 router.delete("/deleteProduct", (req, res) => {
