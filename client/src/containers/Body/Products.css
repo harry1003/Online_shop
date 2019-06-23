@@ -1,0 +1,43 @@
+.Products{
+    margin: 4% 0% 3% 2%;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+}
+
+.Container2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.Container3{
+    display: flex;
+    flex-direction: column;
+
+    margin: 5%;
+    font-family: 'Cinzel', serif;
+}
+
+.Button2{
+    background: rgb(54, 53, 53);
+    border: rgb(54, 53, 53);
+    border-radius: 8px;
+    color: rgb(230, 227, 227);
+
+    font-family: 'Cinzel', serif;
+    font-size: 23px;
+
+    margin: 5% 0%;
+    padding: 4%;
+    width: 100%;
+}
+
+.Button2:hover{
+    cursor: pointer;
+}

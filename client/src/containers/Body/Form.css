@@ -1,0 +1,27 @@
+.Form{
+    padding: 10px 4% 10px 7%;
+    font-size: 30px;
+    font-family: 'Cinzel', serif;
+}
+
+.Input{
+    margin: 1%;
+    width: 20%;
+    height: 33px;
+    font-size: 30px;
+    font-family: 'Cinzel', serif;
+}
+
+.Url{
+    height: 33px;
+    width: 100%;
+    font-size: 30px;
+    font-family: 'Cinzel', serif;
+}
+
+.Overview{
+    height: 200px;
+    width: 100%;
+    font-size: 30px;
+    font-family: 'Cinzel', serif;
+}

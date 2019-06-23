@@ -1,0 +1,26 @@
+.Category_item{
+    list-style: none;
+
+    margin: 5% 0% 0% 0%;
+    padding: 4%;
+    width: 100%;
+
+    background: white;
+
+    border: 1px solid rgb(230, 227, 227);
+    border-radius: 8px;
+
+    font-family: 'Cinzel', serif;
+    font-size: 23px;
+}
+
+.Category_item:hover{
+    cursor: pointer;
+    border: 1px solid black;
+}
+
+.Select{
+    background: rgb(112, 104, 104);
+    border: rgb(112, 104, 104);
+    color: rgb(230, 227, 227);
+}

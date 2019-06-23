@@ -1,0 +1,31 @@
+.Product_item{
+    margin: 0% 3% 3% 4%;
+    padding: 2%;
+
+    width: 250px;
+
+    border: solid 1px rgb(88, 86, 86);
+    border-radius: 10px;
+
+    text-align: center;
+    font-family: 'Source Serif Pro', serif;
+}
+
+.Product_item .Product_img{
+    width: auto;
+	height: 350px;
+	max-width: 100%;
+	max-height: 350px;
+}
+
+.Product_item .Name{
+    font-size: 20px;
+}
+
+.Product_item .Button{
+    color: white;
+    background: rgb(27, 26, 26);
+    border: 1px solid rgb(27, 26, 26);
+    width: 90%;
+    font-family: 'Libre Baskerville', serif;
+}
