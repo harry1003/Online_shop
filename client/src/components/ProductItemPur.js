@@ -18,7 +18,7 @@ export default ({ addOneMoreProduct, deleteOneProduct, num, data }) => {
 
     return (
         <div className="ProductItemPurchase">
-            <img className="Img" src={img}/>
+            <img className="Img" src={img} alt="product img"/>
             <div className="Text-wrapper">
                 <h1>{data.name}</h1>
                 <div className="Text-wrapper2">

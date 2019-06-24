@@ -16,7 +16,7 @@ class Form extends Component {
                             this.props.category_list.map(
                                 (item) => {
                                     if(item !== 'All')
-                                        return <option>{item}</option>
+                                        return <option key={item}>{item}</option>
                                 }
                             )
                         }
@@ -47,7 +47,7 @@ class Form2 extends Component {
         return (
             <div className="Container">
                 <form name="delete_product" className="Form">
-                    <a className="Discription">name: </a><input className="Input" type="text" id="name"/><br/>
+                    <q className="Discription">name: </q><input className="Input" type="text" id="name"/><br/>
                     <input className="Input" type='button' name='submit' value='Delete' onClick={this.props.onClick}/>
                 </form>
             </div>

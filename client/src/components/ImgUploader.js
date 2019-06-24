@@ -24,7 +24,7 @@ class ImgUploader extends Component {
         return(
           <div>
             <input className="Img_button" type="file" onChange={this.onChange} id="Img"/>
-            <img className="Img" src={this.state.url} />
+            <img className="Img" src={this.state.url}/>
           </div>
         );
     }
