@@ -52,7 +52,7 @@ class Shop extends Component {
         axios.post("http://localhost:3001/api/addProduct", product_data)
         .then(res => {this.getProductFromDb();})
         .catch(err => { console.log(err) })
-        .then(alert(`successfully add ${product_data.name}`))
+        .then(alert(`successfully add: ${product_data.name}`))
     };
 
     sendOrderToDb = (order) => {
@@ -69,7 +69,7 @@ class Shop extends Component {
         })
         .then(res => {this.getProductFromDb();})
         .catch(err => {console.log(err)})
-        .then(alert(`successfully delete ${name2delete}`))
+        .then(alert(`successfully delete: ${name2delete}`))
     }
 
     changeMode = (event) => {
@@ -104,10 +104,11 @@ class Shop extends Component {
     }
 
     addOneMoreProduct = (event) => {
-        let id = event.target.className.substr(8);
+        let id = event.target.className.indexOf(" ");
+        let name = event.target.className.slice(id + 1);
         this.setState(
             state => {
-                state.shop_list[id] = state.shop_list[id] + 1;
+                state.shop_list[name] = state.shop_list[name] + 1;
                 return state;
             }
         )

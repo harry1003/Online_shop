@@ -1,15 +1,16 @@
 import React, { Component } from "react";
-import './Form.css'
+import './Form.css';
+import ImgUploader from '../../components/ImgUploader';
 
 class Form extends Component {
     render() {
         return (
             <div className="Container">
                 <form name="add_product" className="Form">
-                    <a className="Discription">id: </a><input className="Input" type="number" id="id"/><br/>
-                    <a className="Discription">name: </a><input className="Input" type="text" id="name"/><br/>
-                    <a className="Discription">author: </a><input className="Input" type="text" id="author"/><br/>
-                    <a className="Discription">category: </a>
+                    <q className="Discription">id: </q><input className="Input" type="number" id="id"/><br/>
+                    <q className="Discription">name: </q><input className="Input" type="text" id="name"/><br/>
+                    <q className="Discription">author: </q><input className="Input" type="text" id="author"/><br/>
+                    <q className="Discription">category: </q>
                     <select className="Input" id="category">
                         {
                             this.props.category_list.map(
@@ -20,16 +21,16 @@ class Form extends Component {
                             )
                         }
                     </select><br/>
-                    <a className="Discription">language: </a><input className="Input" type="text" id="language"/><br/>
+                    <q className="Discription">language: </q><input className="Input" type="text" id="language"/><br/>
 
-                    <a className="Discription">price: </a><input className="Input" type="number" id="price"/><br/>
-                    <a className="Discription">year: </a><input className="Input" type="number" id="year"/><br/>
-                    <a className="Discription">capacity: </a><input className="Input" type="number" id="capacity"/><br/>
+                    <q className="Discription">price: </q><input className="Input" type="number" id="price"/><br/>
+                    <q className="Discription">year: </q><input className="Input" type="number" id="year"/><br/>
+                    <q className="Discription">capacity: </q><input className="Input" type="number" id="capacity"/><br/>
 
                     <br/>
-                    <a className="Discription">url and img, please choose one to submit </a><br/>
+                    <q className="Discription">url and img, please choose one to submit </q><br/>
                     {"url: "} <input className="Url" type="text" id="url"/>
-                    {/* {"  img: "} <input className="Input" type="file" id="img"/>*/}
+                    <ImgUploader/>
                     <br/>
                     <p className="Discription">overview: </p><textarea cols="50" rows="5" className="Overview" type="text" id="overview"/><br/>
 

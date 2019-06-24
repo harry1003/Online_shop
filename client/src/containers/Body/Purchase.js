@@ -20,7 +20,7 @@ class Purchase extends Component {
                                 }
                             )[0]
 
-                            if(num != 0){
+                            if(num !== 0){
                                 total = total + num * product.price;
                                 return <ProductItemPur 
                                             key={index} 
