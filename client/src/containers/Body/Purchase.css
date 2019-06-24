@@ -4,3 +4,29 @@
 
     width: 50%;
 }
+
+.Button2{
+    background: rgb(54, 53, 53);
+    border: rgb(54, 53, 53);
+    border-radius: 8px;
+    color: rgb(230, 227, 227);
+
+    font-family: 'Cinzel', serif;
+    font-size: 23px;
+
+    margin: 5% 0%;
+    padding: 4%;
+    width: 100%;
+}
+
+.Button2:hover{
+    cursor: pointer;
+}
+
+.Button2.Home{
+    background: rgb(88, 86, 86);
+    color: rgb(255, 255, 255);
+    text-decoration:none;
+    text-align: center;
+    width: 92%;
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router-dom";
 import axios from 'axios'
 
 import Header from "./Header/Header"
@@ -139,8 +140,7 @@ class Shop extends Component {
         .then(
             (send) => {
                 if(send){
-                    // Todo: redirect to '/'
-                    console.log(send);
+                    setTimeout(()=>this.props.history.push("/"), 1000);
                 }
             }
         )
@@ -212,4 +212,4 @@ class Shop extends Component {
         );
     }
 }
-export default Shop;
+export default withRouter(Shop);

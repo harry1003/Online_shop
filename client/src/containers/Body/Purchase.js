@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink }  from "react-router-dom";
 import './Purchase.css'
 import ProductItemPur from '../../components/ProductItemPur'
 
@@ -37,6 +38,7 @@ class Purchase extends Component {
                 <h1>Total cost: {(total).toFixed(2)}</h1>
                 <button className="Button2" onClick={this.props.clearShopList}> Clear </button>
                 <button className="Button2" onClick={this.props.buy}> Buy </button>
+                <NavLink to={"/"} className="Button2 Home">Return</NavLink>
             </div>
         </div>
         );
