@@ -7,18 +7,6 @@ import Body from "./Body/Body"
 // Todo: move this list to db
 let cat_list = ["All", "Action", "Anthologies", "Dark Fantasy", "Fantasy Epics", "Horror", "Role Playing"];
 
-async function check_data(data){
-     let isValid = !Object.keys(data).some(
-        (item) => {
-            if(data[item] === ""){
-                alert(`${item} should not be empty`);
-                return true;
-            }
-        }
-    )
-    return {"data": data, "isValid": isValid};
-}
-
 class Shop extends Component {
     constructor(props) {
         super(props);
@@ -48,11 +36,14 @@ class Shop extends Component {
         );
     };
 
-    addProductToDb = (product_data) => {
-        axios.post("http://localhost:3001/api/addProduct", product_data)
+    addProductToDb = (data) => {
+        let send = false;
+        axios.post("http://localhost:3001/api/addProduct", data)
         .then(res => {this.getProductFromDb();})
-        .catch(err => { console.log(err) })
-        .then(alert(`successfully add: ${product_data.name}`))
+        .catch(err => { alert("Fail to add new product"); console.log(err); })
+        .then(alert(`successfully add: ${data.get("name")}`))
+        .then(send = true)
+        return send
     };
 
     sendOrderToDb = (order) => {
@@ -63,9 +54,7 @@ class Shop extends Component {
 
     deleteProductToDb = (name2delete) => {
         axios.delete("http://localhost:3001/api/deleteProduct", {
-            data: {
-                "name": name2delete
-            }
+            data: { "name": name2delete }
         })
         .then(res => {this.getProductFromDb();})
         .catch(err => {console.log(err)})
@@ -82,6 +71,7 @@ class Shop extends Component {
         )
     }
 
+    // modify product in the shopping list
     addProductToShopList = (event) => {
         let id = event.target.className.indexOf(" ");
         let name = event.target.className.slice(id + 1);
@@ -138,29 +128,60 @@ class Shop extends Component {
         this.sendOrderToDb(this.state.shop_list);
     }
 
-    addProduct = (event) => {
+    // modify product in db
+    addProduct = () => {
+        // Todo: check if the product exist
         let form = document.forms["add_product"];
-        let data = {};
-        data["id"] = form["id"].value;
-        data["name"] = form["name"].value;
-        data["url"] = form["url"].value;
-        data["author"] = form["author"].value;
-        data["price"] = form["price"].value;
-        data["overview"] = form["overview"].value;
-        data["category"] = form["category"].value;
-        data["language"] = form["language"].value;
-        data["year"] = form["year"].value;
-        data["capacity"] = form["capacity"].value;
+        let img = document.getElementById("Img").files[0];
+        this.createFormData(form, img)
+        .then(data => {return this.addProductToDb(data)})
+        .catch(err => alert(err))
+        .then(
+            (send) => {
+                if(send){
+                    // Todo: redirect to '/'
+                    console.log(send);
+                }
+            }
+        )
+    }
 
-        check_data(data)
-        .then(data => { 
-            if(data.isValid !== false) 
-                this.addProductToDb(data.data);
-        })
+    createFormData = async (form, img) => {
+        // https://medium.com/ecmastack/uploading-files-with-react-js-and-node-js-e7e6b707f4ef
+        let data = new FormData();
+        let string = ["id", "name", "author", "overview", "category", "language"];
+        let number = ["price", "year", "capacity"];
+        await string.map(
+            (item) => {
+                if(form[item].value === "") throw TypeError(`${item} should not be empty`);
+                data.append(item, form[item].value)
+            }
+        )
+        await number.map(
+            (item) => {
+                if(form[item].value === "") throw TypeError(`${item} should not be empty`);
+                if(form[item].value <= 0) throw TypeError(`${item} should > 0`);
+                data.append(item, form[item].value)
+            }
+        )
+
+        if(img !== undefined){
+            data.append("url", "");
+            data.append("img", img);
+        }
+        else if(img === undefined && form["url"].value === ""){
+            throw TypeError(`please upload an image or url`);
+        }
+        else{
+            data.append("url", form["url"].value);
+            data.append("img", img);
+        }
+        
+        return data;
     }
 
     deleteProduct = () => {
-        // Todo: check if product exist
+        // Todo: check if the product exist
         let form = document.forms["delete_product"];
         let name = form["name"].value;
         this.deleteProductToDb(name);

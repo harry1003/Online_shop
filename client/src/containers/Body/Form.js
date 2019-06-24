@@ -7,7 +7,7 @@ class Form extends Component {
         return (
             <div className="Container">
                 <form name="add_product" className="Form">
-                    <q className="Discription">id: </q><input className="Input" type="number" id="id"/><br/>
+                    <q className="Discription">id: </q><input className="Input" type="text" id="id"/><br/>
                     <q className="Discription">name: </q><input className="Input" type="text" id="name"/><br/>
                     <q className="Discription">author: </q><input className="Input" type="text" id="author"/><br/>
                     <q className="Discription">category: </q>

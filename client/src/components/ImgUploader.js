@@ -1,12 +1,12 @@
 // modify from https://codesandbox.io/s/9lzmzykjkr
 import React, { Component } from "react";
+import "./ImgUploader.css"
 
 class ImgUploader extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             url: null,
-            file: null 
         };
     }
 
@@ -15,7 +15,6 @@ class ImgUploader extends Component {
         this.setState(
             (state) => {
                 state.url = URL.createObjectURL(file);
-                state.file = file;
                 return state;
             }
         );
@@ -24,8 +23,8 @@ class ImgUploader extends Component {
     render(){
         return(
           <div>
-            <input type="file" onChange={this.onChange} />
-            <img style={{ width: "100%" }} src={this.state.url} />
+            <input className="Img_button" type="file" onChange={this.onChange} id="Img"/>
+            <img className="Img" src={this.state.url} />
           </div>
         );
     }

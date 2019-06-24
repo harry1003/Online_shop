@@ -12,8 +12,23 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => console.log("connected to MongoDB"));
 
 const mongo = {
+    getAllProduct: async(res) => {
+        Product.find(
+            (err, product) => {
+                if(err) return res.json({success: false, error: err});
+                return res.json({success: true, data: product});
+            }
+        );
+    },
     addProduct: async(req, res) => {
-        const data = await new Product(req.body);
+        let recieve = req.body;
+        recieve["img"] = {data: "", contentType: ""};
+        if(req.file != undefined){
+            recieve["img"].data = req.file.buffer;
+            recieve["img"].contentType = req.file.mimetype;
+        }
+
+        const data = await new Product(recieve);
         data.save(
             err => {
                 if (err){
@@ -25,16 +40,6 @@ const mongo = {
             }
         );
     },
-
-    getAllProduct: async(res) => {
-        Product.find(
-            (err, product) => {
-                if(err) return res.json({success: false, error: err});
-                return res.json({success: true, data: product});
-            }
-        );
-    },
-
     deleteProduct: async(req, res) => {
         const name = req.body;
         Product.findOneAndDelete(

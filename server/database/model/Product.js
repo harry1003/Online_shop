@@ -3,18 +3,19 @@ const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema(
     {
-        id: Number,
+        id: String,
         name: String,
-        url: String,
-        img: Buffer,
         author: String,
-        price: Number,
-        overview: String,
-
         category: String,
+        overview: String,
         language: String,
+        
+        price: Number,
         year: Number,
-        capacity: Number
+        capacity: Number,
+
+        img: {data: Buffer, contentType: String},
+        url: String
     },
     { timestamps: true }
 );
