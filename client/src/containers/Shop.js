@@ -159,6 +159,7 @@ class Shop extends Component {
     }
 
     deleteProduct = () => {
+        // Todo: check if product exist
         let form = document.forms["delete_product"];
         let name = form["name"].value;
         this.deleteProductToDb(name);
