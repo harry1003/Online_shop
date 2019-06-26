@@ -22,9 +22,9 @@ class Shop extends Component {
     componentDidMount(){
         this.getProductFromDb();
     }
-
+    // to backend
     getProductFromDb = () => {
-        fetch("http://localhost:3001/api/getAllProduct")
+        fetch("http://localhost:3001/product/getAllProduct")
         .then(data => data.json())
         .then(res => {
                 this.setState(
@@ -39,7 +39,7 @@ class Shop extends Component {
 
     addProductToDb = (data) => {
         let send = false;
-        axios.post("http://localhost:3001/api/addProduct", data)
+        axios.post("http://localhost:3001/product/addProduct", data)
         .then(res => {this.getProductFromDb();})
         .catch(err => { alert("Fail to add new product"); console.log(err); })
         .then(alert(`successfully add: ${data.get("name")}`))
@@ -48,13 +48,13 @@ class Shop extends Component {
     };
 
     sendOrderToDb = (order) => {
-        axios.post("http://localhost:3001/api/sendOrder", order)
+        axios.post("http://localhost:3001/product/sendOrder", order)
         .then(alert("order sent"))
         .catch(err => {console.log(err)})
     }
 
     deleteProductToDb = (name2delete) => {
-        axios.delete("http://localhost:3001/api/deleteProduct", {
+        axios.delete("http://localhost:3001/product/deleteProduct", {
             data: { "name": name2delete }
         })
         .then(res => {this.getProductFromDb();})
@@ -62,6 +62,46 @@ class Shop extends Component {
         .then(alert(`successfully delete: ${name2delete}`))
     }
 
+    createUserDb = () => {
+        // temp
+        let user = {
+            userName: "Admin",
+            password: "hSggC&s)MN",
+            firstName: "Test",
+            lastName: "Test",
+            phone: "0000000000",
+            gender: "Test"
+        }
+        // temp
+        axios.post("http://localhost:3001/user/createUser", user)
+        .then(res => {
+            if(res.data.success){
+                alert(`successfully create account ${user.userName}`);
+            }
+            else{
+                alert(res.data.msg);
+            }
+        })
+        .catch(err => console.log(err))
+    }
+
+    loginDb = () => {
+        // temp
+        let data = {userName: "test", password: "1234567"};
+        // temp
+        axios.post("http://localhost:3001/user/login", data)
+        .then(res => {
+            if(res.data.success){
+                alert(`successfully login account ${data.userName}`);
+            }
+            else{
+                alert(res.data.msg);
+            }
+        })
+        .catch(err => console.log(err))
+    }
+
+    // local
     changeMode = (event) => {
         let category = event.target.innerHTML;
         this.setState(
@@ -208,6 +248,8 @@ class Shop extends Component {
                     addProduct={this.addProduct}
                     deleteProduct={this.deleteProduct}
                 />
+                <button onClick={this.loginDb}>login</button>
+                <button onClick={this.createUserDb}>createUser</button>
             </div>
         );
     }

@@ -9,11 +9,9 @@ const ProductSchema = new Schema(
         category: String,
         overview: String,
         language: String,
-        
         price: Number,
         year: Number,
         capacity: Number,
-
         img: {data: Buffer, contentType: String},
         url: String
     },

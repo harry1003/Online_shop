@@ -6,7 +6,7 @@ const multer  = require('multer')
 const upload = multer();
 
 router.get("/getAllProduct", (req, res) => {
-    db.getAllProduct(res)
+    db.getAllProduct(res);
 });
 
 router.post("/addProduct", upload.single('img'), (req, res) => {

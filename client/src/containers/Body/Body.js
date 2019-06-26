@@ -67,6 +67,17 @@ class Body extends Component {
                             }  
                         }
                     />
+
+                    <Route path="/login" render={
+                            () => {
+                                return(
+                                    <div>
+                                        Todo: login
+                                    </div>
+                                )
+                            }
+                        }
+                    />   
                 </Switch>
             </div>
         );
