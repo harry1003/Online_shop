@@ -248,8 +248,6 @@ class Shop extends Component {
                     addProduct={this.addProduct}
                     deleteProduct={this.deleteProduct}
                 />
-                <button onClick={this.loginDb}>login</button>
-                <button onClick={this.createUserDb}>createUser</button>
             </div>
         );
     }

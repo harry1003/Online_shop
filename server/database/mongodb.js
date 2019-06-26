@@ -1,8 +1,11 @@
 const dbRoute = "mongodb+srv://Harry:Harry12345@cluster0-ingaq.mongodb.net/test?retryWrites=true";
+
 const saltRounds = 10;
+const secret = 'test123';
 
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+import jwt from 'jsonwebtoken';
 mongoose.connect(
     dbRoute,
     { useNewUrlParser: true }
@@ -52,33 +55,51 @@ const mongo = {
             }
         );
     },
-    createUser: async(req, res) => {
-        let user = req.body;
-        const userExists = await User.findOne({userName: user.userName});
-        if(userExists){
-            return res.json({ success: false, data: null, msg: 'userName has already existed' });
+    login: async (info) => {
+        const user = await User.findOne({userName: info.userName});
+        //console.log(!user)
+        if (!user) return {success:false, msg:"No such user!"};
+        const compare = await bcrypt.compare(info.password, user.password);
+        if (!compare) {
+            return {
+                sucess: false,
+                msg: 'Password is wrong'
+            }
         }
-
-        user.password = await bcrypt.hash(user.password, saltRounds);
-        const newUser = new User(user);
+        else {
+            return {
+                success: true,
+                token: jwt.sign({data:info.userName}, secret, {expiresIn: '1h'}),
+                userId: user._id
+            }
+        }
+    }
+    ,
+    register: async (info) => {
+        const userExists = await mongo.checkUserName(info.userName);
+        if (userExists){
+            return {
+                success: false,
+                msg: 'Username has already existed'
+            }
+        }
+        info.password = await bcrypt.hash(info.password, saltRounds);
+        const newUser = new User(info);
         await newUser.save();
-
-        return res.json({ success: true, data: null, msg: null});
-    },
-    login: async(req, res) => {
-        const user = await User.findOne({userName: req.body.userName});
-        if(!user){
-            return res.json({ success: false, data: null, msg: "No such user!" });
+        return {
+            success: true,
+            data: newUser
         }
-
-        const compare = await bcrypt.compare(user.password, req.body.password);
-        if(!compare){
-            return res.json({ success: false, data: null, msg: 'password is wrong' });
-        }
-
-        console.log("todo")
-        return res.json({success: true, data: user.userName, msg: null});
     },
+    checkUserName: async (userName) => {
+        const userExists = await User.findOne({userName: userName});
+        if (userExists) return true;
+        else return false;
+    },
+    getAllUser: async () => {
+        const users = await User.find();
+        return users;
+    }
 }
 
 module.exports = mongo;

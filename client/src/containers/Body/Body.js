@@ -5,6 +5,8 @@ import List from './List'
 import Products from './Products'
 import {Form, Form2} from './Form'
 import Purchase from './Purchase'
+import Login from './Login/Login'
+import Register from './Login/Register'
 
 class Body extends Component {
     render() {
@@ -68,16 +70,8 @@ class Body extends Component {
                         }
                     />
 
-                    <Route path="/login" render={
-                            () => {
-                                return(
-                                    <div>
-                                        Todo: login
-                                    </div>
-                                )
-                            }
-                        }
-                    />   
+                    <Route path="/login" component={Login} />
+                    <Route path="/register" component={Register} /> 
                 </Switch>
             </div>
         );
