@@ -5,6 +5,7 @@ import axios from 'axios'
 import Header from "./Header/Header"
 import Body from "./Body/Body"
 
+import withAuth from "./Auth/Auth";
 // Todo: move this list to db
 let cat_list = ["All", "Action", "Anthologies", "Dark Fantasy", "Fantasy Epics", "Horror", "Role Playing"];
 
@@ -231,7 +232,7 @@ class Shop extends Component {
         return (
             <div>
                 <Header data={this.state.data} 
-                        shop_list={this.state.shop_list}/>
+                        shop_list={this.state.shop_list} isAuth={this.props.isAuth} userName={this.props.userName} />
                 <Body
                     mode={this.state.mode}
                     category_list = {this.state.category_list}
@@ -252,4 +253,4 @@ class Shop extends Component {
         );
     }
 }
-export default withRouter(Shop);
+export default withAuth(withRouter(Shop));

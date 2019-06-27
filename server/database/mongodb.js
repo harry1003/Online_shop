@@ -99,6 +99,11 @@ const mongo = {
     getAllUser: async () => {
         const users = await User.find();
         return users;
+    },
+    getUserData: async (userName) => {
+        const user = await User.findOne({userName: userName});
+        if (!user) return {success:false, msg:"No such user!"};
+        return {success:true, data:user}
     }
 }
 

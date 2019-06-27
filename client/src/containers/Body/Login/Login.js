@@ -3,8 +3,10 @@ import { Container, Button, Form, FormGroup, Label, Input, FormText, FormFeedbac
 import { NavLink } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css'
+import url from '../../../config';
+import AuthHelper from '../../Auth/AuthHelper'
 
-const url = "http://localhost:3001/user/"
+//const url = "http://localhost:3001/user/"
 
 class Login extends Component {
     constructor(props){
@@ -54,8 +56,10 @@ class Login extends Component {
         }).then(res => res.json())
         console.log(res)
         if (res.success){
-            this.props.history.push("/");
-            //this.resetState()
+            localStorage.setItem('bookToken', res.token)
+            console.log(localStorage.getItem('bookToken'))
+            window.location.reload();
+            
         }
         else {
             this.setState({
@@ -66,6 +70,9 @@ class Login extends Component {
     }
 
     render() {
+        if (AuthHelper.checkIfLogin()){
+            this.props.history.push("/");
+        }
         return (
             <div className="login-container">
                 <h3>Welcome to login!</h3>

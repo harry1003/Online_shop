@@ -77,7 +77,13 @@
     text-decoration: none;
     color: white;
 }
-  
+
+.greeting {
+    padding: 10px;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+}
+
 .Item-buy.Visible{
     position: absolute;
     top: 12px;

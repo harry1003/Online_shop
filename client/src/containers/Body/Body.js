@@ -7,6 +7,7 @@ import {Form, Form2} from './Form'
 import Purchase from './Purchase'
 import Login from './Login/Login'
 import Register from './Login/Register'
+import Profile from './Profile'
 
 class Body extends Component {
     render() {
@@ -72,6 +73,7 @@ class Body extends Component {
 
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} /> 
+                    <Route path="/profile" component={Profile} />
                 </Switch>
             </div>
         );

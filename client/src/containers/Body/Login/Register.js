@@ -3,8 +3,9 @@ import { Container, Button, Form, FormGroup, Label, Input, FormText, Col } from 
 import { NavLink } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css'
+import url from '../../../config';
 
-const url = "http://localhost:3001/user/"
+//const url = "http://localhost:3001/user/"
 
 class Login extends Component {
     constructor(props){
