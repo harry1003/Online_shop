@@ -23,7 +23,7 @@ class Shop extends Component {
     componentDidMount(){
         this.getProductFromDb();
     }
-    // to backend
+
     getProductFromDb = () => {
         fetch("http://localhost:3001/product/getAllProduct")
         .then(data => data.json())
@@ -74,46 +74,6 @@ class Shop extends Component {
         .then(alert(`successfully delete: ${name2delete}`))
     }
 
-    createUserDb = () => {
-        // temp
-        let user = {
-            userName: "Admin",
-            password: "hSggC&s)MN",
-            firstName: "Test",
-            lastName: "Test",
-            phone: "0000000000",
-            gender: "Test"
-        }
-        // temp
-        axios.post("http://localhost:3001/user/createUser", user)
-        .then(res => {
-            if(res.data.success){
-                alert(`successfully create account ${user.userName}`);
-            }
-            else{
-                alert(res.data.msg);
-            }
-        })
-        .catch(err => console.log(err))
-    }
-
-    loginDb = () => {
-        // temp
-        let data = {userName: "test", password: "1234567"};
-        // temp
-        axios.post("http://localhost:3001/user/login", data)
-        .then(res => {
-            if(res.data.success){
-                alert(`successfully login account ${data.userName}`);
-            }
-            else{
-                alert(res.data.msg);
-            }
-        })
-        .catch(err => console.log(err))
-    }
-
-    // local
     changeMode = (event) => {
         let category = event.target.innerHTML;
         this.setState(
@@ -124,7 +84,6 @@ class Shop extends Component {
         )
     }
 
-    // modify product in the shopping list
     addProductToShopList = (event) => {
         let id = event.target.className.indexOf(" ");
         let name = event.target.className.slice(id + 1);
@@ -177,11 +136,9 @@ class Shop extends Component {
     }
 
     buy = () => {
-        // Todo: check if the list is empty
         this.sendOrderToDb(this.state.shop_list);
     }
 
-    // modify product in db
     addProduct = () => {
         // Todo: check if the product exist
         let form = document.forms["add_product"];

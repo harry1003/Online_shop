@@ -11,7 +11,7 @@ class Form extends Component {
                     <q className="Discription">name: </q><input className="Input" type="text" id="name"/><br/>
                     <q className="Discription">author: </q><input className="Input" type="text" id="author"/><br/>
                     <q className="Discription">category: </q>
-                    <select className="Input" id="category">
+                    <select className="Discription" id="category">
                         {
                             this.props.category_list.map(
                                 (item) => {
@@ -35,7 +35,7 @@ class Form extends Component {
                     <p className="Discription">overview: </p><textarea cols="50" rows="5" className="Overview" type="text" id="overview"/><br/>
 
                    
-                    <input className="Input" type='button' name='submit' value='Add' onClick={this.props.onClick}/>
+                    <input className="Input Button" type='button' name='submit' value='Add' onClick={this.props.onClick}/>
                 </form>
             </div>
         );

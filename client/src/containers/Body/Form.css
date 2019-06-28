@@ -2,13 +2,18 @@
     padding: 10px 4% 10px 7%;
     font-size: 30px;
     font-family: 'Cinzel', serif;
+    width: 80%;
 }
 
 .Input{
     margin: 1%;
     width: 20%;
-    height: 33px;
+    height: 100%;
     font-size: 30px;
+    font-family: 'Merriweather', serif;
+}
+
+.Input.Button{
     font-family: 'Cinzel', serif;
 }
 
@@ -16,12 +21,12 @@
     height: 33px;
     width: 100%;
     font-size: 30px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Merriweather', serif;
 }
 
 .Overview{
     height: 200px;
     width: 100%;
     font-size: 30px;
-    font-family: 'Cinzel', serif;
+    font-family: 'Merriweather', serif;
 }

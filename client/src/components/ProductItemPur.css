@@ -4,12 +4,15 @@
     background: black;
     background-image: url( "https://us.123rf.com/450wm/hendrikjan1958/hendrikjan19581510/hendrikjan1958151001038/47053969-artistic-lines-background-black.jpg?ver=6");
     background-size: cover;
+    
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 
-    padding: 2%;
+    padding: 3% 3% 0% 3%;
     margin: 1%;
+
+    width: 800px;
 
     font-family: 'Source Serif Pro', serif;
 }
@@ -30,6 +33,7 @@
     align-items: flex-start;
 
     margin: 3% 5%;
+    padding: 4%;
     color: rgb(202, 193, 193);
 }
 
@@ -60,8 +64,10 @@
 }
 
 .Button3{
+    font-family: 'Cinzel', serif;
     color: white;
     margin: 3%;
+    font-size: 80px;
 }
 
 .Button3:hover{
@@ -69,5 +75,5 @@
 }
 
 #minus{
-    font-size: 80px;
+    font-size: 90px;
 }

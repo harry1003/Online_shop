@@ -15,10 +15,7 @@ class Purchase extends Component {
                 this.props.history.push("/");
             }
         })
-        if (Object.keys(this.props.shop_list).length === 0){
-            alert("No products to be purchased!")
-            this.props.history.push("/")
-        }
+
         return(
         <div className="Container2">
             <ul className="Purchase">
