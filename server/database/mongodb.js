@@ -27,6 +27,9 @@ const mongo = {
     },
     addProduct: async(req, res) => {
         let recieve = req.body;
+        const product = await Product.findOne({name: recieve.name});
+        if(product) return res.json({success: false, data: null, msg: "Product already exist"});
+        
         recieve["img"] = {data: "", contentType: ""};
         if(req.file != undefined){
             recieve["img"].data = req.file.buffer;
@@ -47,9 +50,12 @@ const mongo = {
     },
     deleteProduct: async(req, res) => {
         const name = req.body;
+        const product = await Product.findOne({name: name.name});
+        if(!product) return res.json({success: false, data: null, msg: `Product "${name.name}" didn't exist`});
+
         Product.findOneAndDelete(
             name, err => {
-                if (err) return res.send(err);
+                if (err) return res.json({ success: false, data: null, msg: err })
                 console.log(`delete product: ${name.name}`)
                 return res.json({ success: true, data: null, msg: null });
             }
@@ -59,20 +65,12 @@ const mongo = {
         let userName = info.userName;
         let order = info.order;
         console.log(order)
-        //try{
         let result = await User.findOneAndUpdate({userName:userName}, {$push: {history:order}});
         console.log(result)
         return {success: true}
-        /*
-        }
-        catch {
-            return {success: false}
-        }
-        */
     },
     login: async (info) => {
         const user = await User.findOne({userName: info.userName});
-        //console.log(!user)
         if (!user) return {success:false, msg:"No such user!"};
         const compare = await bcrypt.compare(info.password, user.password);
         if (!compare) {

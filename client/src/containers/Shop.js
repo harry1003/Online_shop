@@ -39,13 +39,20 @@ class Shop extends Component {
     };
 
     addProductToDb = (data) => {
-        let send = false;
-        axios.post("http://localhost:3001/product/addProduct", data)
-        .then(res => {this.getProductFromDb();})
-        .catch(err => { alert("Fail to add new product"); console.log(err); })
-        .then(alert(`successfully add: ${data.get("name")}`))
-        .then(send = true)
-        return send
+        let send = axios.post("http://localhost:3001/product/addProduct", data)
+        .then(res => {
+            if(res.data.success){
+                this.getProductFromDb();
+                return true;
+            }
+            else{
+                alert(res.data.msg);
+                return false;
+            }
+        })
+        .catch(err => { alert(`Fail to add new product. ${err}`); console.log(err);})
+        if(send) alert(`successfully create product ${data.get("name")}`);
+        return send;
     };
 
     sendOrderToDb = (order) => {
@@ -65,13 +72,23 @@ class Shop extends Component {
         .catch(err => {console.log(err)})
     }
 
-    deleteProductToDb = (name2delete) => {
-        axios.delete("http://localhost:3001/product/deleteProduct", {
+    deleteProductToDb = async (name2delete) => {
+        let del = false;
+        await axios.delete("http://localhost:3001/product/deleteProduct", {
             data: { "name": name2delete }
         })
-        .then(res => {this.getProductFromDb();})
-        .catch(err => {console.log(err)})
-        .then(alert(`successfully delete: ${name2delete}`))
+        .then(res => {
+            if(res.data.success){
+                this.getProductFromDb();
+                del = true;
+            }
+            else{
+                alert(res.data.msg);
+                del = false;
+            }  
+        })
+        if(del) alert(`successfully delete ${name2delete}`);
+        return del;
     }
 
     changeMode = (event) => {
@@ -145,11 +162,10 @@ class Shop extends Component {
         let img = document.getElementById("Img").files[0];
         this.createFormData(form, img)
         .then(data => {return this.addProductToDb(data)})
-        .catch(err => alert(err))
         .then(
             (send) => {
                 if(send){
-                    setTimeout(()=>this.props.history.push("/"), 1000);
+                    setTimeout(()=>this.props.history.push("/"), 100);
                 }
             }
         )
@@ -193,7 +209,14 @@ class Shop extends Component {
         // Todo: check if the product exist
         let form = document.forms["delete_product"];
         let name = form["name"].value;
-        this.deleteProductToDb(name);
+        this.deleteProductToDb(name)
+        .then(
+            del => {
+                if(del){
+                    setTimeout(()=>this.props.history.push("/"), 100);
+                } 
+            }
+        )
     }
 
     render() {
