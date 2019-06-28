@@ -14,21 +14,28 @@ class Profile extends Component {
             photo: avatar
         }
     }
-    componentDidMount = async () => {
-        
+    componentWillMount = async () => {
+        AuthHelper.checkIfLogin().then(isLogin => {
+            if (!isLogin){
+                this.props.history.push("/");
+            }
+        })
         //console.log(this.props.history)
-        const userData = await this.getUserData(this.props.userName)
-        if (this.state.userData.hasOwnProperty('img')){
-            this.setState({
-                userData: userData,
-                photo: this.state.userData.img
-            })
+        if (this.props.userName.length !== 0){
+            const userData = await this.getUserData(this.props.userName)
+            if (this.state.userData.hasOwnProperty('img')){
+                this.setState({
+                    userData: userData,
+                    photo: this.state.userData.img
+                })
+            }
+            else {
+                this.setState({
+                    userData: userData
+                })
+            }
         }
-        else {
-            this.setState({
-                userData: userData
-            })
-        }
+        
 
     }
     getUserData = async (userName) => {
@@ -41,11 +48,6 @@ class Profile extends Component {
         } 
     }
     render () {
-        AuthHelper.checkIfLogin().then(isLogin => {
-            if (!isLogin){
-                this.props.history.push("/");
-            }
-        })
         let history
         console.log(Array.isArray(this.state.userData.history) && this.state.userData.history.length===0)
         if (this.state.userData.history === undefined || (Array.isArray(this.state.userData.history) && this.state.userData.history.length === 0)){
