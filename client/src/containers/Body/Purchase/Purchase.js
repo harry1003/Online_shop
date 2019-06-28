@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { NavLink }  from "react-router-dom";
 import { Button } from "reactstrap";
 import './Purchase.css'
-import ProductItemPur from '../../components/ProductItemPur'
-import AuthHelper from '../Auth/AuthHelper'
+import ProductItemPur from '../../../components/ProductItemPur'
+import AuthHelper from '../../Auth/AuthHelper'
 
 class Purchase extends Component {
     render() {

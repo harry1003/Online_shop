@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './Products.css';
-import ProductItem from '../../components/ProductItem';
+import ProductItem from '../../../components/ProductItem';
 
 class Products extends Component {
     render() {

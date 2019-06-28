@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Switch, Route, NavLink, withRouter}  from "react-router-dom";
 import './Body.css'
-import List from './List'
-import Products from './Products'
-import {Form, Form2} from './Form'
-import Purchase from './Purchase'
+import List from './List/List'
+import Products from './Products/Products'
+import {Form, Form2} from './Form/Form'
+import Purchase from './Purchase/Purchase'
 import Login from './Login/Login'
 import Register from './Login/Register'
-import Profile from './Profile'
+import Profile from './Profile/Profile'
 
 class Body extends Component {
     render() {

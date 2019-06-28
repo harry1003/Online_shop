@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './List.css'
-import CategoryItem from "../../components/CategoryItem"
+import CategoryItem from "../../../components/CategoryItem"
 
 
 class List extends Component {

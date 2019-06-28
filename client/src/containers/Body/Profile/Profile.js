@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import url from "../../config";
-import AuthHelper from "../Auth/AuthHelper";
-import ImgUploader from '../../components/ImgUploader';
+import url from "../../../config";
+import AuthHelper from "../../Auth/AuthHelper";
+import ImgUploader from '../../../components/ImgUploader';
 import {Card, CardImg, CardHeader, CardBody, CardText, CardFooter, Button, Table} from "reactstrap";
-import avatar from '../../resource/default-avatar.jpg'
+import avatar from '../../../resource/default-avatar.jpg'
 import './Profile.css'
 
 class Profile extends Component {

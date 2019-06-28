@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './Form.css';
-import ImgUploader from '../../components/ImgUploader';
+import ImgUploader from '../../../components/ImgUploader';
 
 class Form extends Component {
     render() {
