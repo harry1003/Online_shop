@@ -14,23 +14,29 @@ class Profile extends Component {
             photo: avatar
         }
     }
-    componentDidMount = async () => {
-        
-        //console.log(this.props.history)
-        const userData = await this.getUserData(this.props.userName)
-        if (this.state.userData.hasOwnProperty('img')){
-            this.setState({
-                userData: userData,
-                photo: this.state.userData.img
-            })
-        }
-        else {
-            this.setState({
-                userData: userData
-            })
-        }
 
+    componentWillMount = async () => {
+        AuthHelper.checkIfLogin().then(isLogin => {
+            if (!isLogin){
+                this.props.history.push("/");
+            }
+        })
+        if (this.props.userName.length !== 0){
+            const userData = await this.getUserData(this.props.userName)
+            if (this.state.userData.hasOwnProperty('img')){
+                this.setState({
+                    userData: userData,
+                    photo: this.state.userData.img
+                })
+            }
+            else {
+                this.setState({
+                    userData: userData
+                })
+            }
+        }
     }
+
     getUserData = async (userName) => {
         const body = JSON.stringify({userName:this.state.userName});
         const res = await fetch(url+"getUserData/"+userName).then(res => res.json())
@@ -40,6 +46,7 @@ class Profile extends Component {
             this.props.history.push("/")
         } 
     }
+
     render () {
         AuthHelper.checkIfLogin().then(isLogin => {
             if (!isLogin){
@@ -72,6 +79,7 @@ class Profile extends Component {
                 )   
             })
         }
+
         return (
             <div className="ProfileContainer">
                 <Card className="Card">
@@ -110,5 +118,4 @@ class Profile extends Component {
         )
     }
 }
-
 export default Profile
