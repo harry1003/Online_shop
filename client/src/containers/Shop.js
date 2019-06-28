@@ -49,8 +49,19 @@ class Shop extends Component {
     };
 
     sendOrderToDb = (order) => {
-        axios.post("http://localhost:3001/product/sendOrder", order)
-        .then(alert("order sent"))
+        let data = {order:order, userName:this.props.userName}
+        axios.post("http://localhost:3001/product/sendOrder", data)
+        .then(res => {
+            
+            console.log(res.data.success)
+            if (res.data.success) alert("Order sent");
+            else alert("Purchase failed!")
+            this.setState({
+                shop_list:{}
+            })
+            this.props.history.push('/')
+
+        })
         .catch(err => {console.log(err)})
     }
 
@@ -248,6 +259,9 @@ class Shop extends Component {
 
                     addProduct={this.addProduct}
                     deleteProduct={this.deleteProduct}
+                    userName={this.props.userName}
+                    isAdmin={this.props.isAdmin}
+                    isAuth={this.props.isAuth}
                 />
             </div>
         );

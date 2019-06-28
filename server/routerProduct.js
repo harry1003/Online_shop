@@ -19,8 +19,10 @@ router.delete("/deleteProduct", (req, res) => {
     db.deleteProduct(req, res);
 });
 
-router.post("/sendOrder", ((req, res)=> {
+router.post("/sendOrder", (async (req, res)=> {
     console.log(req.body);
+    let result = await db.sendOrder(req.body);
+    res.json(result)
 }));
 
 module.exports = router;

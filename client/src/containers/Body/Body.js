@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route, NavLink}  from "react-router-dom";
+import { Switch, Route, NavLink, withRouter}  from "react-router-dom";
 import './Body.css'
 import List from './List'
 import Products from './Products'
@@ -11,24 +11,31 @@ import Profile from './Profile'
 
 class Body extends Component {
     render() {
+        let list = <List mode={this.props.mode} 
+        changeMode={this.props.changeMode} 
+        category_list={this.props.category_list}/>
         return(
             <div className="Body">
-                <List mode={this.props.mode} 
-                    changeMode={this.props.changeMode} 
-                    category_list={this.props.category_list}/>
+                
                 <Switch>
                     <Route exact path="/" render={
                             () => {
                                 return(
+                                    <div className="Body">
+                                        {list}
                                     <div className="Container">
-                                        <div className="Route-wrapper">
+                                        
+                                            {this.props.isAdmin
+                                            ? <div className="Route-wrapper">
                                             <NavLink to={"/addProduct"} className='Link'>Add new product</NavLink>
                                             <NavLink to={"/deleteProduct"} className='Link'>Delete product</NavLink>
-                                        </div>
+                                            </div>
+                                            : null}
                                         <Products 
                                             data={this.props.data}
                                             mode={this.props.mode}
                                             addProductToShopList={this.props.addProductToShopList}/>
+                                    </div>
                                     </div>
                                 );
                             }
@@ -38,9 +45,12 @@ class Body extends Component {
                     <Route path="/addProduct" render={
                             () => {
                                 return (
-                                    <Form
-                                        category_list={this.props.category_list}
-                                        onClick={this.props.addProduct}/>
+                                    <div className="Body">
+                                        {list}
+                                        <Form
+                                            category_list={this.props.category_list}
+                                            onClick={this.props.addProduct}/>
+                                    </div>
                                 );
                             }
                         }
@@ -49,7 +59,10 @@ class Body extends Component {
                     <Route path="/deleteProduct" render={
                             () => {
                                 return(
-                                    <Form2 onClick={this.props.deleteProduct}/>
+                                    <div className="Body">
+                                        {list}
+                                        <Form2 onClick={this.props.deleteProduct}/>
+                                    </div>
                                 );
                             }
 
@@ -65,7 +78,12 @@ class Body extends Component {
                                         clearShopList={this.props.clearShopList}
                                         buy={this.props.buy}
                                         addOneMoreProduct={this.props.addOneMoreProduct}
-                                        deleteOneProduct={this.props.deleteOneProduct}/>     
+                                        deleteOneProduct={this.props.deleteOneProduct}
+                                        isAuth={this.props.isAuth}
+                                        userName={this.props.userName}
+                                        history={this.props.history}
+                                        /> 
+                                            
                                 )
                             }  
                         }
@@ -73,10 +91,17 @@ class Body extends Component {
 
                     <Route path="/login" component={Login} />
                     <Route path="/register" component={Register} /> 
-                    <Route path="/profile" component={Profile} />
+                    <Route path="/profile" render={
+                            () => {
+                                return(
+                                    <Profile userName={this.props.userName} history={this.props.history}/>
+                                );
+                            }
+
+                        } />
                 </Switch>
             </div>
         );
     }
 }
-export default Body;
+export default withRouter(Body);

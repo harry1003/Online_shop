@@ -1,13 +1,24 @@
 import React, { Component } from "react";
 import { NavLink }  from "react-router-dom";
+import { Button } from "reactstrap";
 import './Purchase.css'
 import ProductItemPur from '../../components/ProductItemPur'
+import AuthHelper from '../Auth/AuthHelper'
 
 class Purchase extends Component {
     render() {
         let items = Object.keys(this.props.shop_list);
         let total = 0;
-
+        AuthHelper.checkIfLogin().then(isLogin => {
+            if (!isLogin){
+                alert("Please login!")
+                this.props.history.push("/");
+            }
+        })
+        if (Object.keys(this.props.shop_list).length === 0){
+            alert("No products to be purchased!")
+            this.props.history.push("/")
+        }
         return(
         <div className="Container2">
             <ul className="Purchase">

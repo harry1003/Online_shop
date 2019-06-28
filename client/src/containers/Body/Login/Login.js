@@ -70,9 +70,14 @@ class Login extends Component {
     }
 
     render() {
-        if (AuthHelper.checkIfLogin()){
-            this.props.history.push("/");
-        }
+        //console.log(this.props.history)
+        AuthHelper.checkIfLogin().then(isLogin => {
+            //console.log(isLogin)
+            if (isLogin){
+                this.props.history.push("/");
+            }
+        })
+        
         return (
             <div className="login-container">
                 <h3>Welcome to login!</h3>

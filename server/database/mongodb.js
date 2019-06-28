@@ -55,6 +55,21 @@ const mongo = {
             }
         );
     },
+    sendOrder: async (info) => {
+        let userName = info.userName;
+        let order = info.order;
+        console.log(order)
+        //try{
+        let result = await User.findOneAndUpdate({userName:userName}, {$push: {history:order}});
+        console.log(result)
+        return {success: true}
+        /*
+        }
+        catch {
+            return {success: false}
+        }
+        */
+    },
     login: async (info) => {
         const user = await User.findOne({userName: info.userName});
         //console.log(!user)
@@ -101,7 +116,7 @@ const mongo = {
         return users;
     },
     getUserData: async (userName) => {
-        const user = await User.findOne({userName: userName});
+        const user = await User.findOne({userName: userName}, '-password');
         if (!user) return {success:false, msg:"No such user!"};
         return {success:true, data:user}
     }
