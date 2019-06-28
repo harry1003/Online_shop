@@ -9,7 +9,6 @@ export default function withAuth(AuthComponent) {
             super(props);
             this.state = {
                 isAuth: false,
-                isAdmin: false,
                 userName: ""
             }
             
@@ -20,18 +19,10 @@ export default function withAuth(AuthComponent) {
                     const token = localStorage.getItem('bookToken')
                     console.log(token)
                     const user = await AuthHelper.getUserName(token)
-                    if (user.data === "Admin"){
-                        this.setState({
-                            isAdmin: true,
-                            userName: user.data
-                        })
-                    }
-                    else {
-                        this.setState({
-                            isAuth: true,
-                            userName: user.data
-                        })
-                    }                   
+                    this.setState({
+                        isAuth: true,
+                        userName: user.data
+                    })                   
                 }
                 catch (err) {
                     console.log("Something wrong when getting token.")
@@ -43,7 +34,7 @@ export default function withAuth(AuthComponent) {
 
         render() {
             return (
-                <AuthComponent isAuth={this.state.isAuth} userName={this.state.userName} isAdmin={this.state.isAdmin} />
+                <AuthComponent isAuth={this.state.isAuth} userName={this.state.userName} />
             )
         }
     }

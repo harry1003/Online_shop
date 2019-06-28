@@ -25,7 +25,7 @@ class Body extends Component {
                                         {list}
                                     <div className="Container">
                                         
-                                            {this.props.isAdmin
+                                            {this.props.userName==="Admin"
                                             ? <div className="Route-wrapper">
                                             <NavLink to={"/addProduct"} className='Link'>Add new product</NavLink>
                                             <NavLink to={"/deleteProduct"} className='Link'>Delete product</NavLink>

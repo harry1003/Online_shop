@@ -260,7 +260,6 @@ class Shop extends Component {
                     addProduct={this.addProduct}
                     deleteProduct={this.deleteProduct}
                     userName={this.props.userName}
-                    isAdmin={this.props.isAdmin}
                     isAuth={this.props.isAuth}
                 />
             </div>
