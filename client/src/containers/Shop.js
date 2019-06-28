@@ -56,10 +56,14 @@ class Shop extends Component {
     };
 
     sendOrderToDb = (order) => {
+        if(Object.keys(order).length === 0){
+            alert("Shopping list is empty");
+            return;
+        }
+
         let data = {order:order, userName:this.props.userName}
         axios.post("http://localhost:3001/product/sendOrder", data)
         .then(res => {
-            
             console.log(res.data.success)
             if (res.data.success) alert("Order sent");
             else alert("Purchase failed!")
@@ -67,7 +71,6 @@ class Shop extends Component {
                 shop_list:{}
             })
             this.props.history.push('/')
-
         })
         .catch(err => {console.log(err)})
     }
