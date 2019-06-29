@@ -3,9 +3,9 @@ const dbRoute = "mongodb+srv://Harry:Harry12345@cluster0-ingaq.mongodb.net/test?
 const saltRounds = 10;
 const secret = 'test123';
 
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
-import jwt from 'jsonwebtoken';
 mongoose.connect(
     dbRoute,
     { useNewUrlParser: true }

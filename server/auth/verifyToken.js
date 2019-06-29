@@ -1,4 +1,4 @@
-import jwt from 'jsonwebtoken'
+const jwt = require("jsonwebtoken");
 
 const verifyToken = async (req, res) => {
     const token = req.body.token || req.query.token || req.headers['x-access-token']
@@ -15,4 +15,4 @@ const verifyToken = async (req, res) => {
     }
 }
 
-export default verifyToken
+module.exports = verifyToken
