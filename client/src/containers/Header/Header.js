@@ -35,7 +35,7 @@ class Header extends Component {
                     <h1 className="Name">books shop</h1>
                 </div>
                 <div className="Sign_in">
-                    {greeting != "" ? <div className="greeting">{greeting}</div>:null}
+                    {greeting !== "" ? <div className="greeting">{greeting}</div>:null}
                     {this.props.isAuth?<NavLink className="Button" to="/">Home</NavLink>:null}
                     {this.props.isAuth
                     ?<div className="Button" onClick={this.logout}>Sign out</div>

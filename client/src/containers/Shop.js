@@ -34,7 +34,8 @@ class Shop extends Component {
                     }
                 )
             }
-        );
+        )
+        .catch(err => alert(err));
     }
 
     getProductFromDb = () => {
@@ -48,7 +49,8 @@ class Shop extends Component {
                     }
                 )  
             }
-        );
+        )
+        .catch(err => console.log(err));
     };
 
     addProductToDb = (data) => {
