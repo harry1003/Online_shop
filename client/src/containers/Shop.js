@@ -24,7 +24,7 @@ class Shop extends Component {
     }
 
     getCategoryListFromDb = () => {
-        fetch("http://localhost:3001/product/getList")
+        fetch("https://server.b05901059.now.sh/product/getList")
         .then(data => data.json())
         .then(res => {
                 this.setState(
@@ -39,7 +39,7 @@ class Shop extends Component {
     }
 
     getProductFromDb = () => {
-        fetch("http://localhost:3001/product/getAllProduct")
+        fetch("https://server.b05901059.now.sh/product/getAllProduct")
         .then(data => data.json())
         .then(res => {
                 this.setState(
@@ -55,7 +55,7 @@ class Shop extends Component {
 
     addProductToDb = async (data) => {
         let send = false;
-        send = await axios.post("http://localhost:3001/product/addProduct", data)
+        send = await axios.post("https://server.b05901059.now.sh/product/addProduct", data)
         .then(res => {
             if(res.data.success){
                 this.getProductFromDb();
@@ -78,7 +78,7 @@ class Shop extends Component {
         }
 
         let data = {order:order, userName:this.props.userName}
-        axios.post("http://localhost:3001/product/sendOrder", data)
+        axios.post("https://server.b05901059.now.sh/product/sendOrder", data)
         .then(res => {
             console.log(res.data.success)
             if (res.data.success) alert("Order send");
@@ -93,7 +93,7 @@ class Shop extends Component {
 
     deleteProductToDb = async (name2delete) => {
         let del = false;
-        await axios.delete("http://localhost:3001/product/deleteProduct", {
+        await axios.delete("https://server.b05901059.now.sh/product/deleteProduct", {
             data: { "name": name2delete }
         })
         .then(res => {

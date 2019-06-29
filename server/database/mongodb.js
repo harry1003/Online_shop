@@ -1,10 +1,10 @@
 const dbRoute = "mongodb+srv://Harry:Harry12345@cluster0-ingaq.mongodb.net/test?retryWrites=true";
-
 const saltRounds = 10;
 const secret = 'test123';
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+
 const mongoose = require("mongoose");
 mongoose.connect(
     dbRoute,

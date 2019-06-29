@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const db = require("./database/mongodb");
+const jwt = require("jsonwebtoken");
 const verifyToken = require("./auth/verifyToken");
 
 router.post("/login", async (req, res) => {

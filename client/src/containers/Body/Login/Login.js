@@ -6,7 +6,6 @@ import './Login.css'
 import url from '../../../config';
 import AuthHelper from '../../Auth/AuthHelper'
 
-//const url = "http://localhost:3001/user/"
 
 class Login extends Component {
     constructor(props){

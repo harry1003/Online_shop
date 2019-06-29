@@ -1,1 +1,1 @@
-export default "http://localhost:3001/user/";
+export default "https://server.b05901059.now.sh/user/";
