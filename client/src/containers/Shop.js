@@ -6,22 +6,35 @@ import Header from "./Header/Header"
 import Body from "./Body/Body"
 
 import withAuth from "./Auth/Auth";
-// Todo: move this list to db
-let cat_list = ["All", "Action", "Anthologies", "Dark Fantasy", "Fantasy Epics", "Horror", "Role Playing"];
 
 class Shop extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             mode: 'All',
-            category_list: cat_list,
+            category_list: [],
             data: [],
             shop_list: {},
         };
     }
 
     componentDidMount(){
+        this.getCategoryListFromDb();
         this.getProductFromDb();
+    }
+
+    getCategoryListFromDb = () => {
+        fetch("http://localhost:3001/product/getList")
+        .then(data => data.json())
+        .then(res => {
+                this.setState(
+                    state => {
+                        state.category_list = res.data;
+                        return state;
+                    }
+                )
+            }
+        );
     }
 
     getProductFromDb = () => {
@@ -65,7 +78,7 @@ class Shop extends Component {
         axios.post("http://localhost:3001/product/sendOrder", data)
         .then(res => {
             console.log(res.data.success)
-            if (res.data.success) alert("Order sent");
+            if (res.data.success) alert("Order send");
             else alert("Purchase failed!")
             this.setState({
                 shop_list:{}
@@ -160,7 +173,6 @@ class Shop extends Component {
     }
 
     addProduct = () => {
-        // Todo: check if the product exist
         let form = document.forms["add_product"];
         let img = document.getElementById("Img").files[0];
         this.createFormData(form, img)
@@ -209,7 +221,6 @@ class Shop extends Component {
     }
 
     deleteProduct = () => {
-        // Todo: check if the product exist
         let form = document.forms["delete_product"];
         let name = form["name"].value;
         this.deleteProductToDb(name)

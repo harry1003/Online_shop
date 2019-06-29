@@ -25,6 +25,10 @@ const mongo = {
             }
         );
     },
+    getList: async(res) => {
+        let list = ["All", "Action", "Anthologies", "Dark Fantasy", "Fantasy Epics", "Horror", "Role Playing"];
+        res.json({data: list});
+    },
     addProduct: async(req, res) => {
         let recieve = req.body;
         const product = await Product.findOne({name: recieve.name});
