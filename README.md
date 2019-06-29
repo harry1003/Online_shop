@@ -1,4 +1,4 @@
-Online Shop
+OnlineShop
 ===
 A simple online shoping website template written by React and Node. 
 
@@ -82,8 +82,6 @@ cd client && npm start
 ### 後端
 - **Babel**
     - 轉換Javascript
-- **Nodemon**
-    - 監測 server 的程式碼
 - **Express** **Cors**
     - 負責與前端溝通
 - **Bodyparser**, **Multer**
@@ -100,9 +98,17 @@ cd client && npm start
     - https://codesandbox.io/s/9lzmzykjkr
     - https://stackoverflow.com/questions/43628400/meteor-react-render-image-from-array-buffer
     - https://stackoverflow.com/questions/49123222/converting-array-buffer-to-string-maximum-call-stack-size-exceeded
+    - https://medium.com/ecmastack/uploading-files-with-react-js-and-node-js-e7e6b707f4ef
+
+- 登入系統
+    - https://github.com/rchvalbo/jwt_react_node_starting_template_complete
+
+- 表單css
+    - https://github.com/alligatorio/Fancy-Form-Example
 
 ## 心得
 - 張皓雲: 這次的作業很大一部份都是延續我的期中作業，不過因為期中的時候對後端其實還不太熟悉，所以寫法極為混亂，該分開的部份也沒有分開，所以後來後端基本上重寫了一遍，前端接口的地方也統一整理。為了處理 Network Error, db error 之類的情況，也對 Promise, async 更加理解。實做上傳圖片的時候一開始後端什麼也沒收到，後來才發現是 Bodyparser 沒辦法接，要用別的套件。
+- 林耘寬： 這次的作業我實作了帳號系統，這是我期中作業就想寫的部分，在這之前，我有稍微做過session 及cookie 的做法，所以這次使用了許多人推薦的 jsonwebtoken來做驗證的部分。最大的感想就是即使寫了一學期的網站，每次作業當中還是可以意識到自己的不足，只能說經過這學期的課程，只是個開始而已。
 
 ## 組員貢獻
 ### 張皓雲
@@ -116,5 +122,7 @@ cd client && npm start
 - 帳號歷史資訊
 
 ## 課程建議
+- 無 
+
 
 ###### tags: `shopping sites` `React` `node`

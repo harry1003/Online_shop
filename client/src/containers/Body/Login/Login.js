@@ -73,7 +73,7 @@ class Login extends Component {
                     <Col>
                         <FormGroup>
                             <Label className="subtitle" for="userName">Username: </Label>
-                            <Input value={this.state.userName} type="text" name="userName" id="userName" required placeholder="Username..." onChange={e => this.handleInput(e)} />
+                            <Input value={this.state.userName} type="text" name="userName" id="userName" placeholder="Username..." onChange={e => this.handleInput(e)} />
                         </FormGroup>
                         <FormText color="danger">
                             {this.state.noUserInput}
@@ -82,7 +82,7 @@ class Login extends Component {
                     <Col>
                         <FormGroup>
                             <Label className="subtitle" for="password">Password: </Label>
-                            <Input value={this.state.password} type="password" name="password" id="password" required="required" placeholder="Password..." onChange={e => this.handleInput(e)} />
+                            <Input value={this.state.password} type="password" name="password" id="password" placeholder="Password..." onChange={e => this.handleInput(e)} />
                             <FormText color="danger">
                                 {this.state.errorMsg}
                             </FormText>
