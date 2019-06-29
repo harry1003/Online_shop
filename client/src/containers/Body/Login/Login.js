@@ -48,13 +48,13 @@ class Login extends Component {
         */
        if (!this.state.userName || !this.state.password) return
         const body = JSON.stringify({userName:this.state.userName, password:this.state.password});
-        console.log(body)
+        //console.log(body)
         const res = await fetch(url+"login", {
             method: 'POST',
             body: body,
             headers: {"Content-Type": "application/json"}
         }).then(res => res.json())
-        console.log(res)
+        //console.log(res)
         if (res.success){
             localStorage.setItem('bookToken', res.token)
             console.log(localStorage.getItem('bookToken'))
