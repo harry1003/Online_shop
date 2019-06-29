@@ -53,8 +53,9 @@ class Shop extends Component {
         .catch(err => console.log(err));
     };
 
-    addProductToDb = (data) => {
-        let send = axios.post("http://localhost:3001/product/addProduct", data)
+    addProductToDb = async (data) => {
+        let send = false;
+        send = await axios.post("http://localhost:3001/product/addProduct", data)
         .then(res => {
             if(res.data.success){
                 this.getProductFromDb();
