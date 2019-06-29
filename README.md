@@ -1,4 +1,4 @@
-OnlineShop
+Online Shop
 ===
 A simple online shoping website template written by React and Node. 
 
@@ -46,8 +46,9 @@ cd client && npm start
 ![](https://github.com/harry1003/OnlineShop/blob/master/pic/anonymous.jpg)
 
 ### 一般登錄用戶
-未登錄用戶可由右上角 **sign in** 按鈕來進行登錄或註冊。
-登錄後可以使用 **Purchase** 與 **Profile** 功能。 
+未登錄用戶可由右上角 **sign in** 按鈕來進行登錄或註冊。  
+登錄後可以使用 **Purchase** 與 **Profile** 功能。
+ 
 - **Purchase** 頁面能確認購買商品與調整購買數量。
 ![](https://github.com/harry1003/OnlineShop/blob/master/pic/Purchase.jpg)
 - **Profile** 能看到用戶資訊及購買歷史
@@ -85,7 +86,7 @@ cd client && npm start
     - 監測 server 的程式碼
 - **Express** **Cors**
     - 負責與前端溝通
-- **Bodyparser**
+- **Bodyparser**, **Multer**
     - 處理前端送過來的資訊
 - **Mongoose**
     - 與資料庫(mongodbe)溝通
@@ -101,8 +102,18 @@ cd client && npm start
     - https://stackoverflow.com/questions/49123222/converting-array-buffer-to-string-maximum-call-stack-size-exceeded
 
 ## 心得
+- 張皓雲: 這次的作業很大一部份都是延續我的期中作業，不過因為期中的時候對後端其實還不太熟悉，所以寫法極為混亂，該分開的部份也沒有分開，所以後來後端基本上重寫了一遍，前端接口的地方也統一整理。為了處理 Network Error, db error 之類的情況，也對 Promise, async 更加理解。實做上傳圖片的時候一開始後端什麼也沒收到，後來才發現是 Bodyparser 沒辦法接，要用別的套件。
 
 ## 組員貢獻
+### 張皓雲
+- 前端＆後端的基本架構
+- 前後端串接
+- 前端 css
+- 購買、新增、刪除商品
+
+### 林耘寬
+- 登錄、註冊、帳號管理
+- 帳號歷史資訊
 
 ## 課程建議
 
