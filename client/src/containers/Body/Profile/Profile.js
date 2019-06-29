@@ -84,7 +84,6 @@ class Profile extends Component {
             <div className="ProfileContainer">
                 <Card className="Card">
                     <CardImg className="cardImg" src={this.state.photo} alt="personal photo"/>
-                    <Button>Upload Photo</Button>
                 </Card>
                 <Table striped className="Profile">
                     <tbody>
