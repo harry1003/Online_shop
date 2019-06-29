@@ -10,6 +10,7 @@ mongoose.connect(
     dbRoute,
     { useNewUrlParser: true }
 );
+mongoose.set('useFindAndModify', false);
 let db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => console.log("connected to MongoDB"));
@@ -68,9 +69,7 @@ const mongo = {
     sendOrder: async (info) => {
         let userName = info.userName;
         let order = info.order;
-        console.log(order)
         let result = await User.findOneAndUpdate({userName:userName}, {$push: {history:order}});
-        console.log(result)
         return {success: true}
     },
     login: async (info) => {

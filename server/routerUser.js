@@ -6,7 +6,6 @@ import verifyToken from "./auth/verifyToken"
 
 router.post("/login", async (req, res) => {
     const result = await db.login(req.body)
-    console.log(result)
     res.json(result)
 })
 

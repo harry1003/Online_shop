@@ -43,7 +43,7 @@ class Purchase extends Component {
                 }
             </ul>
             <div className="Container3">
-                <h1>Total cost: {(total).toFixed(2)}</h1>
+                <h1>Total cost: <br/>{(total).toFixed(2)}</h1>
                 <button className="Button2" onClick={this.props.clearShopList}> Clear </button>
                 <button className="Button2" onClick={this.props.buy}> Buy </button>
                 <NavLink to={"/"} className="Button2 Home">Return</NavLink>
