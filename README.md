@@ -18,8 +18,9 @@ A simple online shoping website template written by React and Node.
 - [組員貢獻](#----)
 - [課程建議](#----)
 
-## Demo 連結
-https://www.youtube.com/watch?v=wTJpnOcWHjU
+## Deploy & Demo 連結 
+- Deploy: https://onlineshop.b05901059.now.sh/
+- Demo: https://www.youtube.com/watch?v=wTJpnOcWHjU&fbclid=IwAR27kyoJTcJD_kOMyFZ4J5ADzgAb1OAhN8AzIvxAWNthvaHb7jq1WGqnIo4
 
 ## 安裝/使用/操作方式
 * **Download**
@@ -107,8 +108,8 @@ cd client && npm start
     - https://github.com/alligatorio/Fancy-Form-Example
 
 ## 心得
-- 張皓雲: 這次的作業很大一部份都是延續我的期中作業，不過因為期中的時候對後端其實還不太熟悉，所以寫法極為混亂，該分開的部份也沒有分開，所以後來後端基本上重寫了一遍，前端接口的地方也統一整理。為了處理 Network Error, db error 之類的情況，也對 Promise, async 更加理解。實做上傳圖片的時候一開始後端什麼也沒收到，後來才發現是 Bodyparser 沒辦法接，要用別的套件。
-- 林耘寬： 這次的作業我實作了帳號系統，這是我期中作業就想寫的部分，在這之前，我有稍微做過session 及cookie 的做法，所以這次使用了許多人推薦的 jsonwebtoken來做驗證的部分。最大的感想就是即使寫了一學期的網站，每次作業當中還是可以意識到自己的不足，只能說經過這學期的課程，只是個開始而已。
+- **張皓雲**: 這次的作業很大一部份都是延續我的期中作業，不過因為期中的時候對後端其實還不太熟悉，所以寫法極為混亂，該分開的部份也沒有分開，所以後來後端基本上重寫了一遍，前端接口的地方也統一整理。為了處理 Network Error, db error 之類的情況，也對 Promise, async 更加理解。實做上傳圖片的時候一開始後端什麼也沒收到，後來才發現是 Bodyparser 沒辦法接，要用別的套件。
+- **林耘寬**： 這次的作業我實作了帳號系統，這是我期中作業就想寫的部分，在這之前，我有稍微做過session 及cookie 的做法，所以這次使用了許多人推薦的 jsonwebtoken來做驗證的部分。最大的感想就是即使寫了一學期的網站，每次作業當中還是可以意識到自己的不足，只能說經過這學期的課程，只是個開始而已。
 
 ## 組員貢獻
 ### 張皓雲
@@ -116,13 +117,16 @@ cd client && npm start
 - 前後端串接
 - 前端 css
 - 購買、新增、刪除商品
+- Deploy
 
 ### 林耘寬
 - 登錄、註冊、帳號管理
 - 帳號歷史資訊
 
 ## 課程建議
-- 前後端練習數量似乎差有點多。
+- 建議後端多上一些，前端難度並沒有很高，但是花了挺久的時間。而像是 graphql 這種比較難懂的部份教學跟作業的量都有點不太充足。接資料庫也有一點少，像是我其實在期末 project 做完後才敢說我會接資料庫。
+- Deploy也可以教一些？雖然沒有很難，但是要在網路上找到正確的資源花了一些時間，可以用一小時的上課時間以作業為例示範之類的。
+- 學期後半段基本上沒有什麼作業？可以考慮做的小型的串 google / facebook api 的工作。
 
 
 ###### tags: `shopping sites` `React` `node`
