@@ -36,17 +36,7 @@ class Login extends Component {
     }
 
     login = async () => {
-        /*
-        if (!this.state.userName){
-            this.setState({noUserInput: "You need to type username!"})
-            return
-        }
-        if (!this.state.password){
-            this.setState({errorMsg: "You need to type password!"})
-            return 
-        }
-        */
-       if (!this.state.userName || !this.state.password) return
+        if (!this.state.userName || !this.state.password) return
         const body = JSON.stringify({userName:this.state.userName, password:this.state.password});
         //console.log(body)
         const res = await fetch(url+"login", {
@@ -70,9 +60,7 @@ class Login extends Component {
     }
 
     render() {
-        //console.log(this.props.history)
         AuthHelper.checkIfLogin().then(isLogin => {
-            //console.log(isLogin)
             if (isLogin){
                 this.props.history.push("/");
             }
@@ -80,11 +68,11 @@ class Login extends Component {
         
         return (
             <div className="login-container">
-                <h3>Welcome to login!</h3>
+                <h3 className="title">Welcome to login!</h3>
                 <Form className="form">
                     <Col>
                         <FormGroup>
-                            <Label for="userName">Username: </Label>
+                            <Label className="subtitle" for="userName">Username: </Label>
                             <Input value={this.state.userName} type="text" name="userName" id="userName" required placeholder="Username..." onChange={e => this.handleInput(e)} />
                         </FormGroup>
                         <FormText color="danger">
@@ -93,7 +81,7 @@ class Login extends Component {
                     </Col>
                     <Col>
                         <FormGroup>
-                            <Label for="password">Password: </Label>
+                            <Label className="subtitle" for="password">Password: </Label>
                             <Input value={this.state.password} type="password" name="password" id="password" required="required" placeholder="Password..." onChange={e => this.handleInput(e)} />
                             <FormText color="danger">
                                 {this.state.errorMsg}
@@ -107,13 +95,9 @@ class Login extends Component {
                         <Button>
                             <NavLink className="normal-btn" to="/register">Register</NavLink>    
                         </Button>
-                </div>
+                    </div>
                 </Form>
-                
-                                     
-                
             </div>
-            
         )
     }
 }

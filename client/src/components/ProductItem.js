@@ -20,6 +20,7 @@ export default ({ onClick, data }) => {
         <div className="Product_item">
             <img className="Product_img" src={img} alt="product img"/>
             <br/>
+            <br/>
             <h1 className="Name">{data.name}</h1>
             <p>Author: {data.author}</p>
             <p>Price: {data.price}</p>

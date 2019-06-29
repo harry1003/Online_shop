@@ -6,24 +6,38 @@ import Header from "./Header/Header"
 import Body from "./Body/Body"
 
 import withAuth from "./Auth/Auth";
-// Todo: move this list to db
-let cat_list = ["All", "Action", "Anthologies", "Dark Fantasy", "Fantasy Epics", "Horror", "Role Playing"];
 
 class Shop extends Component {
     constructor(props) {
         super(props);
         this.state = { 
             mode: 'All',
-            category_list: cat_list,
+            category_list: [],
             data: [],
             shop_list: {},
         };
     }
 
     componentDidMount(){
+        this.getCategoryListFromDb();
         this.getProductFromDb();
     }
-    // to backend
+
+    getCategoryListFromDb = () => {
+        fetch("http://localhost:3001/product/getList")
+        .then(data => data.json())
+        .then(res => {
+                this.setState(
+                    state => {
+                        state.category_list = res.data;
+                        return state;
+                    }
+                )
+            }
+        )
+        .catch(err => alert(err));
+    }
+
     getProductFromDb = () => {
         fetch("http://localhost:3001/product/getAllProduct")
         .then(data => data.json())
@@ -35,85 +49,66 @@ class Shop extends Component {
                     }
                 )  
             }
-        );
+        )
+        .catch(err => console.log(err));
     };
 
     addProductToDb = (data) => {
-        let send = false;
-        axios.post("http://localhost:3001/product/addProduct", data)
-        .then(res => {this.getProductFromDb();})
-        .catch(err => { alert("Fail to add new product"); console.log(err); })
-        .then(alert(`successfully add: ${data.get("name")}`))
-        .then(send = true)
-        return send
+        let send = axios.post("http://localhost:3001/product/addProduct", data)
+        .then(res => {
+            if(res.data.success){
+                this.getProductFromDb();
+                return true;
+            }
+            else{
+                alert(res.data.msg);
+                return false;
+            }
+        })
+        .catch(err => { alert(`Fail to add new product. ${err}`); console.log(err);})
+        if(send) alert(`successfully create product ${data.get("name")}`);
+        return send;
     };
 
     sendOrderToDb = (order) => {
+        if(Object.keys(order).length === 0){
+            alert("Shopping list is empty");
+            return;
+        }
+
         let data = {order:order, userName:this.props.userName}
         axios.post("http://localhost:3001/product/sendOrder", data)
         .then(res => {
-            
             console.log(res.data.success)
-            if (res.data.success) alert("Order sent");
+            if (res.data.success) alert("Order send");
             else alert("Purchase failed!")
             this.setState({
                 shop_list:{}
             })
             this.props.history.push('/')
-
         })
         .catch(err => {console.log(err)})
     }
 
-    deleteProductToDb = (name2delete) => {
-        axios.delete("http://localhost:3001/product/deleteProduct", {
+    deleteProductToDb = async (name2delete) => {
+        let del = false;
+        await axios.delete("http://localhost:3001/product/deleteProduct", {
             data: { "name": name2delete }
         })
-        .then(res => {this.getProductFromDb();})
-        .catch(err => {console.log(err)})
-        .then(alert(`successfully delete: ${name2delete}`))
-    }
-
-    createUserDb = () => {
-        // temp
-        let user = {
-            userName: "Admin",
-            password: "hSggC&s)MN",
-            firstName: "Test",
-            lastName: "Test",
-            phone: "0000000000",
-            gender: "Test"
-        }
-        // temp
-        axios.post("http://localhost:3001/user/createUser", user)
         .then(res => {
             if(res.data.success){
-                alert(`successfully create account ${user.userName}`);
+                this.getProductFromDb();
+                del = true;
             }
             else{
                 alert(res.data.msg);
-            }
+                del = false;
+            }  
         })
-        .catch(err => console.log(err))
+        if(del) alert(`successfully delete ${name2delete}`);
+        return del;
     }
 
-    loginDb = () => {
-        // temp
-        let data = {userName: "test", password: "1234567"};
-        // temp
-        axios.post("http://localhost:3001/user/login", data)
-        .then(res => {
-            if(res.data.success){
-                alert(`successfully login account ${data.userName}`);
-            }
-            else{
-                alert(res.data.msg);
-            }
-        })
-        .catch(err => console.log(err))
-    }
-
-    // local
     changeMode = (event) => {
         let category = event.target.innerHTML;
         this.setState(
@@ -124,7 +119,6 @@ class Shop extends Component {
         )
     }
 
-    // modify product in the shopping list
     addProductToShopList = (event) => {
         let id = event.target.className.indexOf(" ");
         let name = event.target.className.slice(id + 1);
@@ -177,22 +171,18 @@ class Shop extends Component {
     }
 
     buy = () => {
-        // Todo: check if the list is empty
         this.sendOrderToDb(this.state.shop_list);
     }
 
-    // modify product in db
     addProduct = () => {
-        // Todo: check if the product exist
         let form = document.forms["add_product"];
         let img = document.getElementById("Img").files[0];
         this.createFormData(form, img)
         .then(data => {return this.addProductToDb(data)})
-        .catch(err => alert(err))
         .then(
             (send) => {
                 if(send){
-                    setTimeout(()=>this.props.history.push("/"), 1000);
+                    setTimeout(()=>this.props.history.push("/"), 100);
                 }
             }
         )
@@ -233,10 +223,16 @@ class Shop extends Component {
     }
 
     deleteProduct = () => {
-        // Todo: check if the product exist
         let form = document.forms["delete_product"];
         let name = form["name"].value;
-        this.deleteProductToDb(name);
+        this.deleteProductToDb(name)
+        .then(
+            del => {
+                if(del){
+                    setTimeout(()=>this.props.history.push("/"), 100);
+                } 
+            }
+        )
     }
 
     render() {

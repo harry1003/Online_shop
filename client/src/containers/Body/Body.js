@@ -1,30 +1,28 @@
 import React, { Component } from "react";
 import { Switch, Route, NavLink, withRouter}  from "react-router-dom";
 import './Body.css'
-import List from './List'
-import Products from './Products'
-import {Form, Form2} from './Form'
-import Purchase from './Purchase'
+import List from './List/List'
+import Products from './Products/Products'
+import {Form, Form2} from './Form/Form'
+import Purchase from './Purchase/Purchase'
 import Login from './Login/Login'
 import Register from './Login/Register'
-import Profile from './Profile'
+import Profile from './Profile/Profile'
 
 class Body extends Component {
     render() {
         let list = <List mode={this.props.mode} 
         changeMode={this.props.changeMode} 
         category_list={this.props.category_list}/>
+
         return(
             <div className="Body">
-                
+                {list}
                 <Switch>
                     <Route exact path="/" render={
                             () => {
                                 return(
-                                    <div className="Body">
-                                        {list}
                                     <div className="Container">
-                                        
                                             {this.props.userName==="Admin"
                                             ? <div className="Route-wrapper">
                                             <NavLink to={"/addProduct"} className='Link'>Add new product</NavLink>
@@ -36,7 +34,6 @@ class Body extends Component {
                                             mode={this.props.mode}
                                             addProductToShopList={this.props.addProductToShopList}/>
                                     </div>
-                                    </div>
                                 );
                             }
                         }
@@ -46,7 +43,6 @@ class Body extends Component {
                             () => {
                                 return (
                                     <div className="Body">
-                                        {list}
                                         <Form
                                             category_list={this.props.category_list}
                                             onClick={this.props.addProduct}/>
@@ -60,7 +56,6 @@ class Body extends Component {
                             () => {
                                 return(
                                     <div className="Body">
-                                        {list}
                                         <Form2 onClick={this.props.deleteProduct}/>
                                     </div>
                                 );

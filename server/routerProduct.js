@@ -9,6 +9,10 @@ router.get("/getAllProduct", (req, res) => {
     db.getAllProduct(res);
 });
 
+router.get("/getList", (req, res) => {
+    db.getList(res);
+});
+
 router.post("/addProduct", upload.single('img'), (req, res) => {
     // req.file => img
     // req.body => txt

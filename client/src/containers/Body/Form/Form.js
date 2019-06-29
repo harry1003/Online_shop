@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './Form.css';
-import ImgUploader from '../../components/ImgUploader';
+import ImgUploader from '../../../components/ImgUploader';
 
 class Form extends Component {
     render() {
@@ -11,7 +11,7 @@ class Form extends Component {
                     <q className="Discription">name: </q><input className="Input" type="text" id="name"/><br/>
                     <q className="Discription">author: </q><input className="Input" type="text" id="author"/><br/>
                     <q className="Discription">category: </q>
-                    <select className="Input" id="category">
+                    <select className="Discription" id="category">
                         {
                             this.props.category_list.map(
                                 (item) => {
@@ -34,8 +34,10 @@ class Form extends Component {
                     <br/>
                     <p className="Discription">overview: </p><textarea cols="50" rows="5" className="Overview" type="text" id="overview"/><br/>
 
-                   
-                    <input className="Input" type='button' name='submit' value='Add' onClick={this.props.onClick}/>
+                    <div>
+                        <input className="FormButton" type='button' name='submit' value='Add' onClick={this.props.onClick}/>
+                        
+                    </div>
                 </form>
             </div>
         );
@@ -48,7 +50,8 @@ class Form2 extends Component {
             <div className="Container">
                 <form name="delete_product" className="Form">
                     <q className="Discription">name: </q><input className="Input" type="text" id="name"/><br/>
-                    <input className="Input" type='button' name='submit' value='Delete' onClick={this.props.onClick}/>
+                    <br/>
+                    <input className="FormButton" type='button' name='submit' value='Delete' onClick={this.props.onClick}/>
                 </form>
             </div>
         );

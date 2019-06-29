@@ -2,7 +2,7 @@
     margin: 0% 3% 3% 4%;
     padding: 2%;
 
-    width: 250px;
+    width: 350px;
 
     border: solid 1px rgb(88, 86, 86);
     border-radius: 10px;
@@ -19,7 +19,7 @@
 }
 
 .Product_item .Name{
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .Product_item .Button{

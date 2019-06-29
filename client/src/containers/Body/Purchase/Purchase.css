@@ -1,8 +1,8 @@
 .Purchase{
-    margin: 4%;
+    margin: 4% 0%;
     list-style: none;
-
-    width: 50%;
+    width: 90%;
+    
 }
 
 .Button2{
@@ -28,5 +28,4 @@
     color: rgb(255, 255, 255);
     text-decoration:none;
     text-align: center;
-    width: 92%;
 }

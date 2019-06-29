@@ -19,7 +19,7 @@ class Header extends Component {
                 }
             }
         )
-        //console.log(this.props.userName)
+
         let greeting = ''
         let profile = ''
         if (this.props.isAuth){
@@ -35,27 +35,21 @@ class Header extends Component {
                     <h1 className="Name">books shop</h1>
                 </div>
                 <div className="Sign_in">
-                    <div className="greeting">
-                        {greeting}
-                    </div>
-                    <div className="Button-wrapper">
-                        <NavLink className="Button-black" to="/">Home</NavLink>
-                    </div> 
+                    {greeting !== "" ? <div className="greeting">{greeting}</div>:null}
+                    {this.props.isAuth?<NavLink className="Button" to="/">Home</NavLink>:null}
                     {this.props.isAuth
-                    ? <div className="Button" onClick={this.logout}>
-                        Sign out
-                        </div>
-                    : <NavLink className="Button" to="/login">
-                        Sign in
-                        </NavLink>}
+                    ?<div className="Button" onClick={this.logout}>Sign out</div>
+                    : <NavLink className="Button" to="/login">Sign in</NavLink>}
+                        
+                    <div>
+                        {profile}
+                    </div> 
                     
                     <div className="Button-wrapper">
                         <NavLink className="Button-black" to={"/purchase"}>Purchase</NavLink>
                         <div className={Item}></div>
                     </div> 
-                    <div>
-                        {profile}
-                    </div> 
+
                 </div>
             </div>
         );
