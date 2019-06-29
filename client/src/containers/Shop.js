@@ -66,7 +66,7 @@ class Shop extends Component {
             }
         })
         .catch(err => { alert(`Fail to add new product. ${err}`); console.log(err);})
-        if(send) alert(`successfully create product ${data.get("name")}`);
+        if(send) alert(`successfully create product: ${data.get("name")}`);
         return send;
     };
 
@@ -105,7 +105,7 @@ class Shop extends Component {
                 del = false;
             }  
         })
-        if(del) alert(`successfully delete ${name2delete}`);
+        if(del) alert(`successfully delete: ${name2delete}`);
         return del;
     }
 
