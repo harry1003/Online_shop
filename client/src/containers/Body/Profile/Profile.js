@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import url from "../../../config";
 import AuthHelper from "../../Auth/AuthHelper";
-import ImgUploader from '../../../components/ImgUploader';
 import {Card, CardImg, CardHeader, CardBody, CardText, CardFooter, Button, Table} from "reactstrap";
 import avatar from '../../../resource/default-avatar.jpg'
 import './Profile.css'
@@ -71,7 +70,8 @@ class Profile extends Component {
                         <CardHeader>Purchase History</CardHeader>
                         <CardBody>
                             {Object.keys(hist).map(key => {
-                                return <CardText>{key}: {hist[key]}</CardText>
+                                if(hist[key] > 0) return <CardText>{key}: {hist[key]}</CardText>;
+                                else return null;
                                 })}
                         </CardBody>
                         <CardFooter>Purchase History</CardFooter>

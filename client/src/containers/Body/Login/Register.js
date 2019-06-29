@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Container, Button, Form, FormGroup, Label, Input, FormText, Col } from 'reactstrap';
-import { NavLink } from "react-router-dom"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css'
 import url from '../../../config';
