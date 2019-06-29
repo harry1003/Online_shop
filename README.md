@@ -19,7 +19,7 @@ A simple online shoping website template written by React and Node.
 - [課程建議](#----)
 
 ## Demo 連結
-
+https://www.youtube.com/watch?v=wTJpnOcWHjU
 
 ## 安裝/使用/操作方式
 * **Download**
@@ -122,7 +122,7 @@ cd client && npm start
 - 帳號歷史資訊
 
 ## 課程建議
-- 無 
+- 前後端練習數量似乎差有點多。
 
 
 ###### tags: `shopping sites` `React` `node`
